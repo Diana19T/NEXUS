@@ -45,10 +45,10 @@
     l4.style.transform = `translateY(${(1 - s2) * 105}%)`;
   };
 
-  /* Approach: two-step swap. 0-.12 hold | .12-.42 line 1 | .36-.66 line 2 | .66-1 hold, then pin releases */
+  /* Approach: both lines change in one scroll motion (line 2 trails line 1 slightly). 0-.1 hold | .1-.63 swap | .63-1 hold, then pin releases */
   const appr = $('#approach');
   const lines = $$('.mk', appr).map(m => ({ o: $('.o', m), i: $('.i', m) }));
-  const steps = [[.12, .42], [.36, .66]];
+  const steps = [[.1, .55], [.18, .63]];
   const updateApproach = () => {
     const r = appr.getBoundingClientRect();
     const p = clamp(-r.top / (r.height - innerHeight));

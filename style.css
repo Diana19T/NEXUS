@@ -109,7 +109,7 @@ section{position:relative;width:100%}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* 07 approach: sticky stage, two-step text swap linked to scroll. --u = 1vw at aspect <=1.74 */
-.approach{--u:min(1vw,1.742vh);height:calc(100vh + 150vh);height:calc(100svh + 150svh)}
+.approach{--u:min(1vw,1.742vh);height:calc(100vh + 70vh);height:calc(100svh + 70svh)}
 .ap-st{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--u)*2.8) 0 0 12vw}
 .ap-h{font-family:'Roboto',sans-serif;font-weight:500;letter-spacing:-.04em;font-size:calc(var(--u)*8.15);line-height:calc(var(--u)*7.92);color:#333}
 .approach .mk{display:block;position:relative;overflow:hidden;white-space:nowrap;height:calc(var(--u)*7.92);padding:.07em 0;margin:-.07em 0 0;box-sizing:content-box}
