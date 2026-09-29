@@ -1,3 +1,5 @@
+/* Roboto (local variable font, weights 100-900, widths 75-100) */
+@font-face{font-family:'Roboto';src:url('fonts/Roboto-Variable.woff2') format('woff2');font-weight:100 900;font-stretch:75% 100%;font-style:normal;font-display:swap}
 /* Inter (local variable font, weights 100-900) */
 @font-face{font-family:'Inter';src:url('fonts/Inter-Variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 /* Design canvas 1440px: 1rem = 10 design px, scales with viewport */
@@ -72,6 +74,7 @@ section{position:relative;width:100%}
 .svc-t em{display:block;color:var(--mute);margin-top:3.6rem}
 .ar{display:inline-block;opacity:0;transform:translateX(-1.2rem);transition:opacity .8s var(--ease),transform 1s var(--ease)}
 .svc-m .ph{height:100%}
+.svc-word{position:absolute;inset:0;display:grid;place-items:center;padding-right:.06em;font:500 12.8rem/1 'Inter',sans-serif;letter-spacing:-.06em;color:#fff;mix-blend-mode:difference;pointer-events:none;user-select:none;z-index:2}
 .svc:hover .svc-t{transform:translateX(2rem)}
 .svc:hover .ar{opacity:1;transform:none}
 
@@ -112,15 +115,15 @@ section{position:relative;width:100%}
 /* 07 approach: sticky stage, two-step text swap linked to scroll. --u = 1vw at aspect <=1.74 */
 .approach{--u:min(1vw,1.742vh);height:calc(100vh + 130vh);height:calc(100svh + 130svh)}
 .ap-st{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--u)*2.8) 0 0 12vw}
-.ap-h{font-family:'Roboto',sans-serif;font-weight:500;letter-spacing:-.04em;font-size:calc(var(--u)*8.15);line-height:calc(var(--u)*7.92);color:#333}
-.approach .mk{display:block;position:relative;overflow:hidden;white-space:nowrap;height:calc(var(--u)*7.92);padding:.07em 0;margin:-.07em 0 0;box-sizing:content-box}
+.ap-h{font-family:'Roboto',sans-serif;font-weight:500;letter-spacing:-.04em;font-size:calc(var(--u)*8.1944);line-height:calc(var(--u)*8.0556);color:#333}
+.approach .mk{display:block;position:relative;overflow:hidden;white-space:nowrap;height:calc(var(--u)*8.0556);padding:.07em 0;margin:-.07em 0 0;box-sizing:content-box}
 .approach .mk>span{display:block;will-change:transform}
 .approach .mk .i{position:absolute;left:0;top:.07em;transform:translateY(105%)}
 .ap-l{display:block;margin-top:calc(var(--u)*1.4);font-size:calc(var(--u)*.764);line-height:1.4;color:var(--mute)}
 
 /* 08 contact */
 .contact{height:72.5rem}
-.ct-t{position:absolute;left:1.8rem;top:10.1rem;font-size:8.4rem;line-height:9.1rem;font-weight:400;letter-spacing:-.04em}
+.ct-t{position:absolute;left:1.8rem;top:10.1rem;font-family:'Roboto',sans-serif;font-size:10rem;line-height:9.7rem;font-weight:500;letter-spacing:-.03em}
 .ft{position:absolute;top:30.7rem;left:0;right:0;height:35rem;border-top:1px solid var(--line);font-size:1.2rem;line-height:2.1rem}
 .ft>div{position:absolute;top:2.7rem;display:flex;flex-direction:column}
 .c1{left:1.8rem}.c2{left:53.2rem}.c3{left:89.1rem}.c4{left:117.2rem}
