@@ -17,8 +17,9 @@ section{position:relative;width:100%}
 .ph-dark{background:#999}
 .ph-in{position:absolute;inset:0;display:grid;place-items:center;background:inherit;
   transform:translate(var(--px,0),var(--py,0)) scale(var(--sc,1));transition:transform 1.1s var(--ease)}
-[data-par] .ph-in{--sc:1.06}
+[data-par] .ph-in{--sc:1}
 [data-par]:hover .ph-in{--sc:1.1}
+.ph-in img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
 .ph-in span{font-size:1.1rem;letter-spacing:.08em;color:#8a8a86}
 .ph-dark .ph-in span{color:#dcdcdc}
 
@@ -87,7 +88,7 @@ section{position:relative;width:100%}
 .pill{display:inline-grid;place-items:center;margin-top:1.2rem;width:5.4rem;height:2.2rem;border:1px solid var(--ink);font-size:1.1rem;transition:background .6s,color .6s}
 .pill:hover{background:var(--ink);color:var(--light)}
 .wk-i{position:absolute;left:0;top:0;overflow:hidden;background:var(--ph);display:block;will-change:transform}
-.wk-i em{position:absolute;left:1.6rem;bottom:1.4rem;font-size:1.1rem;letter-spacing:.06em;font-weight:500;opacity:0;transform:translateY(.8rem);transition:opacity .8s var(--ease),transform .8s var(--ease);z-index:2}
+.wk-i em{color:#fff;mix-blend-mode:difference;position:absolute;left:1.6rem;bottom:1.4rem;font-size:1.1rem;letter-spacing:.06em;font-weight:500;opacity:0;transform:translateY(.8rem);transition:opacity .8s var(--ease),transform .8s var(--ease);z-index:2}
 .wk-i:hover em{opacity:1;transform:none}
 
 /* 06 about */
