@@ -65,10 +65,10 @@ section{position:relative;width:100%}
 .sv-meta span{position:absolute;left:112.2rem;color:var(--mute)}.sv-meta i{position:absolute;right:1.8rem}
 .sv-list{position:absolute;top:51.9rem;left:0;right:0}
 .svc{display:grid;grid-template-columns:38.6rem 103.7rem;height:69.2rem;margin-bottom:3.2rem}
-.svc-t{align-self:end;padding:0 0 4rem 1.8rem;font:500 1.6rem/1.8rem 'Inter',sans-serif;letter-spacing:-.06em;transition:transform 1s var(--ease)}
+.svc-t{align-self:end;padding:0 0 3rem 1.8rem;font:500 1.6rem/1.8rem 'Inter',sans-serif;letter-spacing:-.06em;transition:transform 1s var(--ease)}
 .svc-t b{display:flex;gap:.8rem;font-weight:500}
-.svc-t span{display:block;color:var(--mute);margin-top:1.7rem}
-.svc-t em{display:block;color:var(--mute);margin-top:3rem}
+.svc-t span{display:block;color:var(--mute);margin-top:1.2rem}
+.svc-t em{display:block;color:var(--mute);margin-top:3.6rem}
 .ar{display:inline-block;opacity:0;transform:translateX(-1.2rem);transition:opacity .8s var(--ease),transform 1s var(--ease)}
 .svc-m .ph{height:100%}
 .svc:hover .svc-t{transform:translateX(2rem)}
