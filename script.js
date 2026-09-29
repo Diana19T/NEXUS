@@ -66,12 +66,15 @@
   const N = items.length;
   let cur = 0, target = 0, G = {};
 
+  /* Design px on a 1440 canvas: big 1037x692, small 315x188, gap 26 (kept constant while animating).
+     Scaled by width; if the window is too short for the 692+26+188 stack, scaled down to fit. */
+  const BW = 1037, BH = 692, SW = 315, SH = 188, GAP = 26;
   const measure = () => {
     const W = stage.clientWidth, H = stage.clientHeight;
-    const bw = Math.min(W * 0.7194, (H - 96) / 0.86), bh = bw / 1.6;
-    const sw = bw * 0.306, sh = sw / 1.63, gap = bw * 0.024;
+    const k = Math.min(W / 1440, (H - 48) / (BH + GAP + SH));
+    const bw = BW * k, bh = BH * k, sw = SW * k, sh = SH * k, gap = GAP * k;
     const a = (H - (bh + gap + sh)) / 2;
-    G = { W, H, bw, bh, sw, sh, a, b: a + bh + gap, R: W - W * 0.0125 };
+    G = { W, H, bw, bh, sw, sh, gap, a, R: W - W * 0.0125 };
     pin.style.height = ((N - 1) * 0.9 + 1) * H + 'px';
     readTarget(); render();
   };
@@ -80,26 +83,24 @@
     target = clamp((scrollY - top) / (pin.offsetHeight - G.H)) * (N - 1);
   };
 
+  /* Items form one vertical chain: every item's top = previous item's bottom + gap. */
   const render = () => {
-    const { H, bw, bh, sw, sh, a, b, R } = G;
+    const { bw, bh, sw, sh, gap, a, R } = G;
+    const n0 = Math.floor(cur), f = cur - n0;
+    let y = a - f * (bh + gap);                       // top of the exiting/current item
     items.forEach((it, n) => {
-      const d = n - cur;
-      let w, h, y, op = 1;
-      if (d >= 1) {                    // waiting below, enters into slot B
-        const k = clamp(d - 1);
-        w = sw; h = sh; y = b + k * (H - b + 20); op = 1 - k;
-      } else if (d >= 0) {             // small -> big, slot B -> slot A
-        const e = 1 - d;
-        w = lerp(sw, bw, e); h = lerp(sh, bh, e); y = lerp(b, a, e);
-      } else {                         // leaves upward
-        const k = clamp(-d);
-        w = bw; h = bh; y = a - k * (bh + a + 40); op = 1 - clamp((k - 0.5) * 2);
+      let w = sw, h = sh, op = 0;
+      if (n < n0) { w = bw; h = bh; }
+      else if (n === n0) { w = bw; h = bh; op = 1 - clamp((f - 0.5) * 2); }
+      else if (n === n0 + 1) { w = lerp(sw, bw, f); h = lerp(sh, bh, f); op = 1; }
+      else if (n === n0 + 2) { op = f; }
+      if (n >= n0) {
+        it.i.style.width = w + 'px'; it.i.style.height = h + 'px';
+        it.i.style.transform = `translate3d(${R - w}px,${y}px,0)`;
+        it.t.style.transform = `translate3d(0,${y}px,0)`;
+        y += h + gap;
       }
-      it.i.style.width = w + 'px'; it.i.style.height = h + 'px';
-      it.i.style.transform = `translate3d(${R - w}px,${y}px,0)`;
-      it.i.style.opacity = op;
-      it.t.style.transform = `translate3d(0,${y}px,0)`;
-      it.t.style.opacity = op;
+      it.i.style.opacity = it.t.style.opacity = op;
       const on = op > 0.05;
       it.i.style.pointerEvents = it.t.style.pointerEvents = on ? '' : 'none';
       it.i.style.visibility = it.t.style.visibility = on ? '' : 'hidden';

@@ -1,3 +1,5 @@
+/* Inter (local variable font, weights 100-900) */
+@font-face{font-family:'Inter';src:url('fonts/Inter-Variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 /* Design canvas 1440px: 1rem = 10 design px, scales with viewport */
 :root{--bg:#F4F4F1;--ink:#0A0A0A;--mute:#858585;--light:#F4F4F0;--ph:#D8D8D5;--line:rgba(10,10,10,.12);--ease:cubic-bezier(.16,.84,.3,1)}
 html{font-size:calc(100vw/144);scroll-behavior:smooth}
@@ -62,14 +64,13 @@ section{position:relative;width:100%}
 .sv-meta b{position:absolute;left:1.8rem}.sv-meta b+b{left:59.1rem}
 .sv-meta span{position:absolute;left:112.2rem;color:var(--mute)}.sv-meta i{position:absolute;right:1.8rem}
 .sv-list{position:absolute;top:51.9rem;left:0;right:0}
-.svc{display:grid;grid-template-columns:38.7rem 103.6rem;height:69.1rem;margin-bottom:3.2rem}
-.svc-t{align-self:end;padding:0 0 4rem 1.8rem;font-size:1.2rem;transition:transform 1s var(--ease)}
-.svc-t b{display:flex;gap:.8rem;font-weight:600}
+.svc{display:grid;grid-template-columns:38.6rem 103.7rem;height:69.2rem;margin-bottom:3.2rem}
+.svc-t{align-self:end;padding:0 0 4rem 1.8rem;font:500 1.6rem/1.8rem 'Inter',sans-serif;letter-spacing:-.06em;transition:transform 1s var(--ease)}
+.svc-t b{display:flex;gap:.8rem;font-weight:500}
 .svc-t span{display:block;color:var(--mute);margin-top:1.7rem}
 .svc-t em{display:block;color:var(--mute);margin-top:3rem}
 .ar{display:inline-block;opacity:0;transform:translateX(-1.2rem);transition:opacity .8s var(--ease),transform 1s var(--ease)}
-.svc-m{transition:transform 1s var(--ease)}.svc-m .ph{height:100%}
-.svc:hover .svc-m{transform:scale(1.02)}
+.svc-m .ph{height:100%}
 .svc:hover .svc-t{transform:translateX(2rem)}
 .svc:hover .ar{opacity:1;transform:none}
 
