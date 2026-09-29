@@ -66,15 +66,13 @@
   const N = items.length;
   let cur = 0, target = 0, G = {};
 
-  /* Design px on a 1440 canvas: big 1037x692, small 315x188, gap 26 (kept constant while animating).
-     Scaled by width; if the window is too short for the 692+26+188 stack, scaled down to fit. */
-  const BW = 1037, BH = 692, SW = 315, SH = 188, GAP = 26;
+  /* Exact design px on a 1440 canvas: big 1037x642, small 315x188, gap 26 (constant while animating).
+     Scaled only by window width (never by height); the stack starts at the top of the pinned stage. */
+  const BW = 1037, BH = 642, SW = 315, SH = 188, GAP = 26;
   const measure = () => {
     const W = stage.clientWidth, H = stage.clientHeight;
-    const k = Math.min(W / 1440, (H - 48) / (BH + GAP + SH));
-    const bw = BW * k, bh = BH * k, sw = SW * k, sh = SH * k, gap = GAP * k;
-    const a = (H - (bh + gap + sh)) / 2;
-    G = { W, H, bw, bh, sw, sh, gap, a, R: W - W * 0.0125 };
+    const k = W / 1440;
+    G = { W, H, bw: BW * k, bh: BH * k, sw: SW * k, sh: SH * k, gap: GAP * k, a: 0, R: W - W * 0.0125 };
     pin.style.height = ((N - 1) * 0.9 + 1) * H + 'px';
     readTarget(); render();
   };
