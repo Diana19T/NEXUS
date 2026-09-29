@@ -28,24 +28,37 @@
     el.addEventListener('pointerleave', () => { inner.style.setProperty('--px', '0px'); inner.style.setProperty('--py', '0px'); });
   });
 
-  /* Scroll-driven text swap (intro + approach) */
-  const swaps = $$('.swap').map(el => {
-    const a = $('.s-a', el), b = $('.s-b', el);
-    return { el, a, b, base: parseFloat(getComputedStyle(a).opacity) };
-  });
-  const updateSwaps = () => {
-    const vh = innerHeight;
-    swaps.forEach(({ el, a, b, base }) => {
-      const r = el.getBoundingClientRect();
-      const f = clamp((vh * 0.62 - (r.top + r.height / 2)) / (vh * 0.3));
-      a.style.opacity = base * (1 - f);
-      a.style.transform = `translateY(${-f * 3}rem)`;
-      a.style.filter = `blur(${f * 8}px)`;
-      b.style.opacity = base * f;
-      b.style.transform = `translateY(${(1 - f) * 3}rem)`;
-      b.style.filter = `blur(${(1 - f) * 8}px)`;
+  /* Intro: pinned stage, progress p (0..1) over the scroll runway.
+     0-.12 hold | .12-.62 "trends." -> "We create", "them." rises | .62-1 hold, then the pin releases */
+  const intro = $('#intro');
+  const l3o = $('.l3 .o', intro), l3i = $('.l3 .i', intro), l4 = $('.l4 > span', intro);
+  const ez = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const seg = (v, a, b) => clamp((v - a) / (b - a));
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const updateIntro = () => {
+    const r = intro.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - innerHeight));
+    const s = reduce ? (p > .5 ? 1 : 0) : ez(seg(p, .12, .62));
+    const s2 = reduce ? s : ez(seg(p, .2, .68));
+    l3o.style.transform = `translateY(${-s * 105}%)`;
+    l3i.style.transform = `translateY(${(1 - s) * 105}%)`;
+    l4.style.transform = `translateY(${(1 - s2) * 105}%)`;
+  };
+
+  /* Approach: two-step swap. 0-.12 hold | .12-.42 line 1 | .36-.66 line 2 | .66-1 hold, then pin releases */
+  const appr = $('#approach');
+  const lines = $$('.mk', appr).map(m => ({ o: $('.o', m), i: $('.i', m) }));
+  const steps = [[.12, .42], [.36, .66]];
+  const updateApproach = () => {
+    const r = appr.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - innerHeight));
+    lines.forEach((l, n) => {
+      const s = reduce ? (p > steps[n][0] + .15 ? 1 : 0) : ez(seg(p, steps[n][0], steps[n][1]));
+      l.o.style.transform = `translateY(${-s * 105}%)`;
+      l.i.style.transform = `translateY(${(1 - s) * 105}%)`;
     });
   };
+  const updateSwaps = () => { updateIntro(); updateApproach(); };
 
   /* Pinned Selected Work: scroll progress -> float state s in [0, N-1] */
   const pin = $('#pin'), stage = $('#stage');

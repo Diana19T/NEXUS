@@ -37,13 +37,19 @@ section{position:relative;width:100%}
 .btn{background:var(--ink);color:var(--light);font-size:1.1rem;width:16.1rem;height:4.5rem;display:grid;place-items:center;letter-spacing:.02em;margin-right:1.5rem;transition:opacity .6s}
 .btn:hover{opacity:.75}
 
-/* 02 intro */
-.intro{height:108rem}
+/* 02 intro: sticky stage, text swap is scroll-linked (see script.js). --u = 1vw at aspect 1.4, shrinks on wider screens */
 .swap{display:grid}.swap>*{grid-area:1/1}
-.intro .swap{position:absolute;left:17.9rem;top:23.4rem}
 .big{font-size:16.8rem;line-height:17.4rem;font-weight:600;letter-spacing:-.05em;color:#0A0A0A;opacity:.8}
 .s-b{opacity:0}
-.intro-d{position:absolute;right:26.4rem;top:82.3rem;width:48.7rem;text-align:right;text-transform:uppercase;font-size:1.9rem;line-height:3.3rem;font-weight:300;letter-spacing:-.02em}
+.intro{--u:min(1vw,1.397vh);height:calc(100vh + 130vh);height:calc(100svh + 130svh)}
+.intro-st{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;padding:calc(var(--u)*13.1) 18.6vw 0 12.5vw}
+.intro-h{position:relative;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.05em;font-size:calc(var(--u)*11.67);line-height:1.035;color:#434345;height:calc(1.035em*3)}
+.intro .mk{display:block;position:relative;overflow:hidden;white-space:nowrap;height:1.035em;padding:.06em 0;margin:-.06em 0 0;box-sizing:content-box}
+.intro .mk>span{display:block;will-change:transform}
+.intro .l3 .i{position:absolute;left:0;top:.06em;transform:translateY(105%)}
+.intro .l4{position:absolute;left:0;top:calc(1.035em*3 + .06em);margin:0}
+.intro .l4>span{transform:translateY(105%)}
+.intro-d{position:absolute;top:calc(var(--u)*62.6);right:18.6vw;width:calc(var(--u)*33.5);text-align:right;text-transform:uppercase;font-weight:300;font-size:calc(var(--u)*1.45);line-height:calc(var(--u)*2.29);letter-spacing:-.03em}
 
 /* 03 services */
 .services{height:285rem}
@@ -101,11 +107,14 @@ section{position:relative;width:100%}
 .track i{width:2.2rem;height:2.2rem;border:1px solid #b5b5b0;border-radius:50%}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-/* 07 approach */
-.approach{height:80rem}
-.ap{position:absolute;left:17.5rem;top:13rem}
-.ap-t{font-family:'Roboto',sans-serif;font-weight:400;font-size:9.6rem;line-height:11.5rem;color:#0A0A0A;opacity:.85;white-space:nowrap}
-.ap-l{position:absolute;left:17.5rem;top:54.8rem;font-size:1.1rem;color:var(--mute)}
+/* 07 approach: sticky stage, two-step text swap linked to scroll. --u = 1vw at aspect <=1.74 */
+.approach{--u:min(1vw,1.742vh);height:calc(100vh + 150vh);height:calc(100svh + 150svh)}
+.ap-st{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--u)*2.8) 0 0 12vw}
+.ap-h{font-family:'Roboto',sans-serif;font-weight:500;letter-spacing:-.04em;font-size:calc(var(--u)*8.15);line-height:calc(var(--u)*7.92);color:#333}
+.approach .mk{display:block;position:relative;overflow:hidden;white-space:nowrap;height:calc(var(--u)*7.92);padding:.07em 0;margin:-.07em 0 0;box-sizing:content-box}
+.approach .mk>span{display:block;will-change:transform}
+.approach .mk .i{position:absolute;left:0;top:.07em;transform:translateY(105%)}
+.ap-l{display:block;margin-top:calc(var(--u)*1.4);font-size:calc(var(--u)*.764);line-height:1.4;color:var(--mute)}
 
 /* 08 contact */
 .contact{height:72.5rem}
